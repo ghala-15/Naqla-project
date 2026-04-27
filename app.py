@@ -111,7 +111,7 @@ if menu == "🏠 الرئيسية":
    # الحالة 1: المسار العالمي (تعديل: إضافة منطق الترجمة والتبسيط)
     if pathway == "🌐 المسار العالمي":
         if pathway == "🌐 المسار العالمي":
-        st.markdown('<div class="main-card">', unsafe_allow_html=True)
+            st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الحقيقي)")
         
         c1, c2 = st.columns(2)
