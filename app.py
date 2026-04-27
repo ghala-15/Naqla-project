@@ -110,61 +110,34 @@ if menu == "🏠 الرئيسية":
     
    # الحالة 1: المسار العالمي (تعديل: إضافة منطق الترجمة والتبسيط)
     if pathway == "🌐 المسار العالمي":
+        if pathway == "🌐 المسار العالمي":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
-        st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الشامل)")
+        st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الحقيقي)")
         
-        # اختيار اللغات
         c1, c2 = st.columns(2)
-        with c1: 
-            src_lang = st.selectbox("لغة النص الأصلي:", ["العربية", "English"])
-        with c2: 
-            trg_lang = st.selectbox("الترجمة والتبسيط إلى:", ["English (Simple)", "العربية (مبسطة)"])
+        with c1: src_l = st.selectbox("من لغة:", ["العربية", "English"])
+        with c2: trg_l = st.selectbox("إلى لغة مبسطة:", ["English (Simple)", "العربية (مبسطة)"])
 
-        # خانة النص الأكاديمي
-        text_in = st.text_area("أدخل المحتوى الأكاديمي المراد معالجته:", 
-                               height=150, 
-                               placeholder="مثال: Cloud Computing provides on-demand network access...")
+        text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
         
-        if st.button("تبسيط وترجمة المحتوى ✨"):
+        if st.button("تبسيط ومعالجة ذكية ✨"):
             if text_in:
-                with st.spinner("جاري المعالجة الذكية..."):
-                    st.divider()
-                    
-                    text_lower = text_in.lower()
-                    
-                    # سيناريو 1: النص عربي والمطلوب تبسيط وترجمة للإنجليزية
-                    if src_lang == "العربية" and "English" in trg_lang:
-                        if "الحوسبة السحابية" in text_in:
-                            translation = "Cloud Computing"
-                            simplification = "It's like an online storage. Instead of saving files on your PC, you save them on the internet to access them from anywhere."
-                        else:
-                            translation = "General Academic Content"
-                            simplification = "The content has been translated and simplified into clear, easy English sentences."
-
-                    # سيناريو 2: النص إنجليزي والمطلوب تبسيط وترجمة للعربية
-                    elif src_lang == "English" and "العربية" in trg_lang:
-                        if "cloud computing" in text_lower:
-                            translation = "الحوسبة السحابية"
-                            simplification = "ببساطة: هي مخزن إلكتروني على الإنترنت. بدلاً من حفظ ملفاتك على جهازك الشخصي، تحفظها في السحاب (الإنترنت) لتصل إليها من أي مكان."
-                        else:
-                            translation = "محتوى أكاديمي عام"
-                            simplification = "تمت ترجمة النص وتبسيطه إلى لغة عربية سهلة وواضحة تناسب الاستيعاب السريع."
-                    
-                    # عرض النتائج في بطاقات مرتبة
-                    col_res1, col_res2 = st.columns(2)
-                    with col_res1:
-                        st.info(f"**🎯 المصطلح المترجم:**\n\n{translation}")
-                    with col_res2:
-                        st.success(f"**💡 التبسيط الذكي:**\n\n{simplification}")
-                    
-                    # قسم فك الرموز
-                    with st.expander("🔍 شرح المصطلحات الأكاديمية"):
-                        st.write("1. On-demand: تعني توفير الخدمة فور طلبها.")
-                        st.write("2. Infrastructure: تعني البنية التحتية أو الأجهزة التي تشغل النظام.")
-                    
-                    st.balloons()
+                s_code = 'ar' if src_l == "العربية" else 'en'
+                t_code = 'en' if "English" in trg_l else 'ar'
+                
+                # ترجمة حقيقية
+                translated = GoogleTranslator(source=s_code, target=t_code).translate(text_in)
+                
+                # تبسيط يدوي للمصطلحات الشائعة
+                simple_text = translated.replace("Cloud Computing", "Online Storage").replace("infrastructure", "basic tools")
+                
+                res_c1, res_c2 = st.columns(2)
+                with res_c1:
+                    st.info(f"**🎯 المصطلح المترجم:**\n\n{translated}")
+                with res_c2:
+                    st.success(f"**💡 التبسيط الذكي (الزبدة):**\n\n{simple_text}")
             else:
-                st.warning("الرجاء إدخال نص أولاً.")
+                st.warning("يرجى كتابة نص أولاً.")
         st.markdown('</div>', unsafe_allow_html=True)
 
     # الحالة 2: نمط التركيز (تعديل: إضافة كتابة المحتوى والمهام الشخصية)
