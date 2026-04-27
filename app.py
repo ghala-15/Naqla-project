@@ -3,11 +3,12 @@ import os
 import glob
 import io
 from gtts import gTTS
+from deep_translator import GoogleTranslator
 
 # 1. إعدادات الصفحة الأساسية
 st.set_page_config(page_title="منصة نقلة | NAQLA", layout="wide")
 
-# 2. تصميم الواجهة (CSS) - لجعلها تبدو كمنصة احترافية
+# 2. تصميم الواجهة (CSS)
 st.markdown("""
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
@@ -27,19 +28,14 @@ st.markdown("""
 
 # 3. بناء القائمة الجانبية (Sidebar)
 with st.sidebar:
-    # محرك بحث عن الشعار لضمان ظهوره
     logo = glob.glob("naqla_logo.*")
     if logo: 
         st.image(logo[0], use_container_width=True)
     
     st.markdown("---")
-    
-    # القائمة الرئيسية التي طلبتيها
     menu = st.selectbox("القائمة الرئيسية", ["🏠 الرئيسية", "⚙️ الإعدادات", "♿ سهولة الوصول"])
-    
     st.markdown("---")
     
-    # منطق المسارات: تظهر فقط إذا كنا في "الرئيسية"
     if menu == "🏠 الرئيسية":
         st.markdown("### 🛤️ المسارات")
         pathway = st.radio("اختر المسار:", 
@@ -58,190 +54,114 @@ with col_h2:
         st.image("kku_logo.jpg", width=120)
 
 st.divider()
-# --- قسم الإعدادات ---
+
+# --- منطق الصفحات ---
+
 if menu == "⚙️ الإعدادات":
     st.markdown('<div class="main-card">', unsafe_allow_html=True)
     st.header("⚙️ إعدادات المنصة")
-    
     col_acc1, col_acc2 = st.columns(2)
     with col_acc1:
         st.subheader("👤 بيانات الحساب")
-        st.text_input("الاسم الكامل:", value="طالبة مبدعة")
-        st.text_input("البريد الجامعي:", value="student@kku.edu.sa")
-    
+        st.text_input("الاسم الكامل:", value="غلا")
+        st.text_input("البريد الجامعي:", value="ghala@kku.edu.sa")
     with col_acc2:
         st.subheader("🛠️ تفضيلات النظام")
         st.selectbox("لغة الواجهة:", ["العربية", "English"])
         st.toggle("تفعيل الإشعارات الذكية", value=True)
-        st.toggle("الوضع الليلي (قريباً)")
-
     if st.button("حفظ التغييرات ✅"):
         st.toast("تم حفظ إعداداتك بنجاح!")
     st.markdown('</div>', unsafe_allow_html=True)
-    # --- قسم سهولة الوصول ---
+
 elif menu == "♿ سهولة الوصول":
     st.markdown('<div class="main-card">', unsafe_allow_html=True)
     st.header("♿ أدوات سهولة الوصول")
-    st.write("خصص واجهة المنصة بما يتناسب مع احتياجاتك البصرية والسمعية.")
-
     col_access1, col_access2 = st.columns(2)
     with col_access1:
         st.markdown("### 👀 المساعدة البصرية")
         font_size = st.slider("حجم الخط في المنصة:", 14, 30, 18)
-        contrast = st.select_slider("مستوى التباين:", ["عادي", "متوسط", "عالي جداً"])
         st.color_picker("اختر لون مريح للعين خلفية النصوص:", "#ffffff")
-
     with col_access2:
-        st.markdown("### 🔊 المساعدة السمعية والتركيز")
+        st.markdown("### 🔊 المساعدة السمعية")
         st.checkbox("تفعيل قارئ الشاشة التلقائي")
-        st.checkbox("إخفاء الصور المشتتة (نمط التركيز العالي)")
         st.checkbox("تحويل الأرقام إلى نطق صوتي")
-
-    st.info(f"💡 نصيحة: تم ضبط حجم الخط حالياً على {font_size} بكسل لتسهيل القراءة.")
     st.markdown('</div>', unsafe_allow_html=True)
-# سطر تجريبي للتأكد من أن الجزء الأول يعمل
-st.write(f"أنت الآن في: **{menu}**")
-if pathway:
-    st.write(f"المسار المختار هو: **{pathway}**")
-    # 5. منطق عرض المحتوى بناءً على اختيار المستخدم
 
-# --- أولاً: إذا اختار المستخدم "الرئيسية" من القائمة الجانبية ---
-if menu == "🏠 الرئيسية":
-    
-   # الحالة 1: المسار العالمي (تعديل: إضافة منطق الترجمة والتبسيط)
+elif menu == "🏠 الرئيسية":
     if pathway == "🌐 المسار العالمي":
-        if pathway == "🌐 المسار العالمي":
-            st.markdown('<div class="main-card">', unsafe_allow_html=True)
+        st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الحقيقي)")
-        
         c1, c2 = st.columns(2)
-        with c1: src_l = st.selectbox("من لغة:", ["العربية", "English"])
-        with c2: trg_l = st.selectbox("إلى لغة مبسطة:", ["English (Simple)", "العربية (مبسطة)"])
-
+        with c1: src_l = st.selectbox("من لغة:", ["English", "العربية"])
+        with c2: trg_l = st.selectbox("إلى لغة مبسطة:", ["العربية (مبسطة)", "English (Simple)"])
+        
         text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
         
-      if st.button("تبسيط ومعالجة ذكية ✨"):
-        if text_in:
-            # ترجمة حقيقية
-            translated = GoogleTranslator(source='auto', target='ar').translate(text_in)
-            
-            # تبسيط يدوي
-            simple_text = translated.replace("Cloud Computing", "Online Storage")
-            
-            res_c1, res_c2 = st.columns(2)
-            with res_c1:
-                st.info(f"**🎯 المصطلح المترجم:**\n\n{translated}")
-            with res_c2:
-                st.success(f"**💡 التبسيط الذكي (الزبدة):**\n\n{simple_text}")
-        else:
-            st.warning("يرجى كتابة نص أولاً.")
+        if st.button("تبسيط ومعالجة ذكية ✨"):
+            if text_in:
+                # حل مشكلة سطر 129: تعريف المتغيرات بوضوح
+                s_code = 'en' if src_l == "English" else 'ar'
+                t_code = 'ar' if "العربية" in trg_l else 'en'
+                
+                translated = GoogleTranslator(source=s_code, target=t_code).translate(text_in)
+                simple_text = translated.replace("Cloud Computing", "التخزين السحابي (مساحة أونلاين)")
+                
+                res_c1, res_c2 = st.columns(2)
+                with res_c1:
+                    st.info(f"🎯 النص المترجم:\n\n{translated}")
+                with res_c2:
+                    st.success(f"💡 التبسيط الذكي:\n\n{simple_text}")
             else:
                 st.warning("يرجى كتابة نص أولاً.")
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # الحالة 2: نمط التركيز (تعديل: إضافة كتابة المحتوى والمهام الشخصية)
     elif pathway == "🎯 نمط التركيز":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.header("🎯 نمط التركيز (تفاعل ذكي)")
-        
-        # 1. قسم كتابة محتوى المحاضرة والتلخيص
-        st.subheader("📝 محتوى المحاضرة")
-        lecture_content = st.text_area("اكتب أو الصق محتوى المحاضرة هنا لملخصه:", height=150)
-        
+        lecture_content = st.text_area("اكتب محتوى المحاضرة لتلخيصه:", height=150)
         if st.button("توليد ملخص النقاط الذهبية 💡"):
             if lecture_content:
-                st.info("### 📌 ملخص المحاضرة في نقاط:")
-                st.write("- النقطة الأولى: أهم فكرة ذكرت في البداية.")
-                st.write("- النقطة الثانية: المفهوم الأساسي الذي يجب حفظه.")
-                st.write("- النقطة الثالثة: الخلاصة التي ستأتي في الاختبار.")
+                st.info("### 📌 ملخص المحاضرة:")
+                st.write("- النقطة الأولى: الفكرة الأساسية.")
+                st.write("- النقطة الثانية: المفاهيم الهامة.")
             else:
-                st.warning("أدخل محتوى المحاضرة أولاً ليتم تلخيصه.")
+                st.warning("أدخل نصاً أولاً.")
         
         st.divider()
-
-        # 2. قسم المهام (الطالب يكتب مهامه بنفسه)
-        st.subheader("✅ قائمة مهامك الشخصية")
-        new_task = st.text_input("أضف مهمة جديدة (مثلاً: مراجعة أول 5 دقائق):")
-        if st.button("إضافة مهمة +"):
-            if new_task:
-                if 'tasks' not in st.session_state:
-                    st.session_state.tasks = []
-                st.session_state.tasks.append(new_task)
-        
-        # عرض المهام المضافة
-        if 'tasks' in st.session_state and st.session_state.tasks:
-            for i, task in enumerate(st.session_state.tasks):
-                st.checkbox(task, key=f"task_{i}")
-        else:
-            st.write("لا توجد مهام مضافة بعد. ابدأ بكتابة أول مهمة!")
-
+        st.subheader("✅ قائمة مهامك")
+        if 'tasks' not in st.session_state: st.session_state.tasks = []
+        new_task = st.text_input("أضف مهمة جديدة:")
+        if st.button("إضافة +"):
+            if new_task: st.session_state.tasks.append(new_task)
+        for i, task in enumerate(st.session_state.tasks):
+            st.checkbox(task, key=f"task_{i}")
         st.markdown('</div>', unsafe_allow_html=True)
-    # الحالة 2: نمط التركيز (ADHD & Dyslexia)
-    elif pathway == "🎯 نمط التركيز":
-        st.markdown('<div class="main-card">', unsafe_allow_html=True)
-        st.header("🎯 نمط التركيز")
-        st.write("بيئة تعليمية هادئة تساعدك على إنجاز مهامك دون تشتت.")
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 📝 كبسولة الدرس")
-            st.info("تم تقسيم المحتوى إلى أجزاء صغيرة (Chunky Method).")
-            st.write("- المفهوم الأول: أساسيات الحوسبة.")
-            st.write("- المفهوم الثاني: التخزين السحابي.")
-        
-        with col2:
-            st.markdown("### ⏳ قائمة الإنجاز")
-            st.checkbox("فهمت تعريف الحوسبة")
-            st.checkbox("شاهدت الفيديو القصير")
-            st.checkbox("حللت الاختبار السريع")
-            
-        st.markdown('---')
-        st.button("تفعيل مؤقت التركيز (25 دقيقة) ⏱️")
-        st.markdown('</div>', unsafe_allow_html=True)
-        # الحالة 3: النمط البصري (مساعد لغة الإشارة)
+
     elif pathway == "👁️ النمط البصري":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
-        st.header("👁️ النمط البصري")
-        st.write("ترجمة فورية للمصطلحات الأكاديمية إلى لغة الإشارة.")
-        
-        sign_map = {
-            "جامعة": "uni.gif",
-            "السلام عليكم": "hello.gif",
-            "شكراً": "thanks.gif",
-            "سعيد": "happy.gif"
-        }
-        
-        selected_word = st.selectbox("اختر المصطلح الأكاديمي:", list(sign_map.keys()))
-        
+        st.header("👁️ النمط البصري (مساعد لغة الإشارة)")
+        sign_map = {"جامعة": "uni.gif", "شكراً": "thanks.gif", "سعيد": "happy.gif"}
+        selected_word = st.selectbox("اختر المصطلح:", list(sign_map.keys()))
         if st.button("عرض الإشارة 🎥"):
             target_gif = sign_map[selected_word]
             if os.path.exists(target_gif):
-                st.markdown(f"<h4 style='text-align:center;'>إشارة: {selected_word}</h4>", unsafe_allow_html=True)
-                st.image(target_gif, use_container_width=True)
+                st.image(target_gif, caption=f"إشارة: {selected_word}")
             else:
-                st.error(f"ملف الإشارة ({target_gif}) غير موجود في مجلد المشروع.")
+                st.error("ملف الإشارة غير موجود في المجلد.")
         st.markdown('</div>', unsafe_allow_html=True)
 
-    # الحالة 4: النمط السمعي (تحويل النص لصوت)
     elif pathway == "🔊 النمط السمعي":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
-        st.header("🔊 النمط السمعي")
-        st.write("تحويل النصوص المكتوبة إلى صوت مسموع بوضوح.")
-        
-        audio_input = st.text_area("أدخل النص الذي تريد سماعه:", height=150)
-        
+        st.header("🔊 النمط السمعي (تحويل النص لصوت)")
+        audio_input = st.text_area("أدخل النص لسماعه:", height=150)
         if st.button("تحويل إلى صوت 🎧"):
             if audio_input:
-                with st.spinner("جاري معالجة الصوت..."):
-                    try:
-                        tts = gTTS(text=audio_input, lang='ar')
-                        fp = io.BytesIO()
-                        tts.write_to_fp(fp)
-                        fp.seek(0)
-                        st.audio(fp, format='audio/mp3')
-                        st.success("تم تجهيز الملف الصوتي بنجاح!")
-                    except Exception as e:
-                        st.error("تأكدي من الاتصال بالإنترنت لتشغيل قارئ النصوص.")
-            else:
-                st.warning("الرجاء كتابة نص أولاً.")
+                try:
+                    tts = gTTS(text=audio_input, lang='ar')
+                    fp = io.BytesIO()
+                    tts.write_to_fp(fp)
+                    fp.seek(0)
+                    st.audio(fp, format='audio/mp3')
+                except:
+                    st.error("تأكدي من الاتصال بالإنترنت.")
         st.markdown('</div>', unsafe_allow_html=True)
