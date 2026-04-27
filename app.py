@@ -119,23 +119,21 @@ if menu == "🏠 الرئيسية":
         with c2: trg_l = st.selectbox("إلى لغة مبسطة:", ["English (Simple)", "العربية (مبسطة)"])
 
         text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
-        
-        if st.button("تبسيط ومعالجة ذكية ✨"):
-            if text_in:
-                s_code = 'ar' if src_l == "العربية" else 'en'
-                t_code = 'en' if "English" in trg_l else 'ar'
-                
-                # ترجمة حقيقية
-                translated = GoogleTranslator(source='auto', target='ar').translate(text_in)
-                
-                # تبسيط يدوي للمصطلحات الشائعة
-                simple_text = translated.replace("Cloud Computing", "Online Storage").replace("infrastructure", "basic tools")
-                
-                res_c1, res_c2 = st.columns(2)
-                with res_c1:
-                    st.info(f"**🎯 المصطلح المترجم:**\n\n{translated}")
-                with res_c2:
-                    st.success(f"**💡 التبسيط الذكي (الزبدة):**\n\n{simple_text}")
+      if st.button("تبسيط ومعالجة ذكية ✨"):
+        if text_in:
+            # ترجمة حقيقية
+            translated = GoogleTranslator(source='auto', target='ar').translate(text_in)
+            
+            # تبسيط يدوي
+            simple_text = translated.replace("Cloud Computing", "Online Storage")
+            
+            res_c1, res_c2 = st.columns(2)
+            with res_c1:
+                st.info(f"**🎯 المصطلح المترجم:**\n\n{translated}")
+            with res_c2:
+                st.success(f"**💡 التبسيط الذكي (الزبدة):**\n\n{simple_text}")
+        else:
+            st.warning("يرجى كتابة نص أولاً.")
             else:
                 st.warning("يرجى كتابة نص أولاً.")
         st.markdown('</div>', unsafe_allow_html=True)
