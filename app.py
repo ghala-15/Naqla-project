@@ -119,6 +119,7 @@ if menu == "🏠 الرئيسية":
         with c2: trg_l = st.selectbox("إلى لغة مبسطة:", ["English (Simple)", "العربية (مبسطة)"])
 
         text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
+        
       if st.button("تبسيط ومعالجة ذكية ✨"):
         if text_in:
             # ترجمة حقيقية
