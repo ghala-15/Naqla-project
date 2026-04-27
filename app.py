@@ -16,7 +16,7 @@ st.markdown("""
 
 # القائمة الجانبية
 with st.sidebar:
-    st.image("naqla_logo.png", width=150) # تأكدي من وجود الصورة في GitHub
+   
     st.title("القائمة الرئيسية")
     menu = st.radio("انتقل إلى:", ["🏠 الرئيسية", "⚙️ الإعدادات", "♿ سهولة الوصول"])
 
@@ -36,7 +36,7 @@ elif menu == "♿ سهولة الوصول":
     st.header("♿ سهولة الوصول")
     st.slider("حجم الخط:", 14, 30, 18)
     st.checkbox("تفعيل قارئ الشاشة")
-    st.checkbox("تباين عالي")
+  
     st.markdown('</div>', unsafe_allow_html=True)
 
 # --- 3. القسم الرئيسي (المسارات) ---
