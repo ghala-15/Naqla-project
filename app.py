@@ -120,7 +120,7 @@ if menu == "🏠 الرئيسية":
 
         text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
         
-        if st.button("تبسيط ومعالجة ذكية ✨"):
+      if st.button("تبسيط ومعالجة ذكية ✨"):
         if text_in:
             # ترجمة حقيقية
             translated = GoogleTranslator(source='auto', target='ar').translate(text_in)
