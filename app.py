@@ -126,7 +126,7 @@ if menu == "🏠 الرئيسية":
                 t_code = 'en' if "English" in trg_l else 'ar'
                 
                 # ترجمة حقيقية
-                translated = GoogleTranslator(source=s_code, target=t_code).translate(text_in)
+                translated = GoogleTranslator(source='auto', target='ar').translate(text_in)
                 
                 # تبسيط يدوي للمصطلحات الشائعة
                 simple_text = translated.replace("Cloud Computing", "Online Storage").replace("infrastructure", "basic tools")
