@@ -159,6 +159,30 @@ elif menu == "♿ سهولة الوصول":
     st.markdown('</div>', unsafe_allow_html=True)
 
 elif menu == "🏠 الرئيسية":
+    # --- قسم النبذة وأسماء الطلاب --- #
+    st.markdown('<div class="main-card">', unsafe_allow_html=True)
+    st.subheader("📝 نبذة عن المشروع")
+    st.write("""
+    منصة نقلة (NAQLA) هي مبادرة تهدف إلى تسهيل العملية التعليمية للأشخاص ذوي الإعاقة، 
+    من خلال توفير أدوات ذكية تعتمد على الذكاء الاصطناعي لتبسيط النصوص الأكاديمية، 
+    وتحويل المحتوى إلى صيغ تتناسب مع احتياجاتهم (بصري، سمعي، لغة إشارة)، 
+    مما يسهم في ردم الفجوة التعليمية وتحقيق تجربة تعلم شاملة.
+    """)
+    
+    st.divider()
+    
+    st.subheader("👥 فريق العمل (الطلاب)")
+    # توزيع الأسماء على أعمدة بشكل مرتب
+    col1, col2 = st.columns(2)
+    with col1:
+        st.markdown("- بسمة سلطان العسكري")
+        st.markdown("- لمار محمد العكاسي")
+        st.markdown("- بيادر عبدالله القرني")
+    with col2:
+        st.markdown("- فجر محمد القحطاني")
+        st.markdown("- بدر عبدالله الشهري")
+    st.markdown('</div>', unsafe_allow_html=True)
+    # ------------------------------ #
     if pathway == "🌐 المسار العالمي":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الحقيقي)")
