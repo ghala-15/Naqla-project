@@ -88,11 +88,11 @@ st.title("منصة نقلة | NAQLA")
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 col_stat1, col_stat2, col_stat3 = st.columns(3)
 with col_stat1:
-st.metric(label="✅ نصوص معالجة", value="+1,250")
+    st.metric(label="✅ نصوص معالجة", value="+1,250")
 with col_stat2:
-st.metric(label="🌍 لغات مدعومة", value="6 لغات")
+    st.metric(label="🌍 لغات مدعومة", value="6 لغات")
 with col_stat3:
-st.metric(label="⚡ سرعة الاستجابة", value="فورية")
+    st.metric(label="⚡ سرعة الاستجابة", value="فورية")
 st.markdown('</div>', unsafe_allow_html=True)
 st.divider()
 # 3. بناء القائمة الجانبية (Sidebar)
