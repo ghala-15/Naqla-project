@@ -83,18 +83,27 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # 3. عرض العنوان
-# 3. الهيدر الجديد (شعار الجامعة + العنوان) في أعلى الصفحة
+# ---------------------------------------------------------
+# 3. الهيدر (الشعار + العنوان + فريق العمل)
+# ---------------------------------------------------------
 col_logo, col_title = st.columns([1, 4])
 
 with col_logo:
-    # سيحاول البرنامج العثور على أي ملف يبدأ بـ naqla_logo أو kku_logo
     logo_files = glob.glob("kku_logo.*") + glob.glob("naqla_logo.*")
     if logo_files:
         st.image(logo_files[0], width=100)
 
 with col_title:
     st.title("منصة نقلة | NAQLA")
-# --- لوحة الإحصائيات (Dashboard) ---
+    st.markdown("""
+        <p style='color: #2E7D32; font-weight: bold; font-size: 18px; margin-top: -15px;'>
+        NAQLA By: بسمة العسكري، لمار العكاسي، بيادر القرني، فجر القحطاني، بدر الشهري
+        </p>
+    """, unsafe_allow_html=True)
+
+# ---------------------------------------------------------
+# 4. لوحة الإحصائيات (Dashboard) - تظهر دائماً في الواجهة
+# ---------------------------------------------------------
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 col_stat1, col_stat2, col_stat3 = st.columns(3)
 with col_stat1:
@@ -104,44 +113,40 @@ with col_stat2:
 with col_stat3:
     st.metric(label="⚡ سرعة الاستجابة", value="فورية")
 st.markdown('</div>', unsafe_allow_html=True)
+
+# ---------------------------------------------------------
+# 5. نبذة عن فكرة المشروع (Landing Page)
+# ---------------------------------------------------------
+st.markdown("""
+    <div class="main-card" style="text-align: center; background-color: #f0f7ff; border-right: 5px solid #003366;">
+        <h3 style="color: #003366;">💡 عن منصة نقلة</h3>
+        <p style="font-size: 19px; color: #444; line-height: 1.6;">
+            <b>نقلة</b> هي منصة تعليمية ذكية تهدف إلى تيسير التعلم للأشخاص ذوي الإعاقة (الصم والمكفوفين) 
+            من خلال تحويل النصوص الأكاديمية المعقدة إلى محتوى مبسط ومناسب لكل نمط تعليمي، 
+            باستخدام تقنيات الذكاء الاصطناعي والترجمة الفورية لخدمة طلاب جامعة الملك خالد.
+        </p>
+    </div>
+""", unsafe_allow_html=True)
+
 st.divider()
-# 3. بناء القائمة الجانبية (Sidebar)
+
+# ---------------------------------------------------------
+# 6. إعداد القائمة الجانبية (Sidebar)
+# ---------------------------------------------------------
 with st.sidebar:
-    logo = glob.glob("naqla_logo.*")
-    if logo: 
-        st.image(logo[0], use_container_width=True)
-    
-    st.markdown("---")
-    menu = st.selectbox("القائمة الرئيسية", ["🏠 الرئيسية", "⚙️ الإعدادات", "♿ سهولة الوصول"])
-    st.markdown("---")
-    
-    if menu == "🏠 الرئيسية":
-        st.markdown("### 🛤️ المسارات")
-        pathway = st.radio("اختر المسار:", 
-                           ["🌐 المسار العالمي", "🎯 نمط التركيز", "👁️ النمط البصري", "🔊 النمط السمعي"])
-    else:
-        pathway = None
+    st.markdown("### ⚙️ الإعدادات والمسارات")
+    menu = st.radio("اختر المسار التعليمي:", 
+                    ["🏠 الصفحة التعريفية", "🌐 المسار العالمي (الترجمة)", "🎯 نمط التركيز", "🎧 المسار الصوتي"])
 
+# ---------------------------------------------------------
+# 7. منطق عرض المحتوى بناءً على الخيار
+# ---------------------------------------------------------
+if menu == "🏠 الصفحة التعريفية":
+    st.success("أهلاً بك في منصة نقلة! استخدم القائمة الجانبية للانتقال إلى أدوات الترجمة والتبسيط.")
+    st.info("💡 نصيحة: ابدأ بـ 'المسار العالمي' لترجمة وتبسيط محاضراتك.")
 
-
-# --- منطق الصفحات ---
-
-if menu == "⚙️ الإعدادات":
-    st.markdown('<div class="main-card">', unsafe_allow_html=True)
-    st.header("⚙️ إعدادات المنصة")
-    col_acc1, col_acc2 = st.columns(2)
-    with col_acc1:
-        st.subheader("👤 بيانات الحساب")
-        st.text_input("الاسم الكامل:", value="غلا")
-        st.text_input("البريد الجامعي:", value="ghala@kku.edu.sa")
-    with col_acc2:
-        st.subheader("🛠️ تفضيلات النظام")
-        st.selectbox("لغة الواجهة:", ["العربية", "English"])
-        st.toggle("تفعيل الإشعارات الذكية", value=True)
-    if st.button("حفظ التغييرات ✅"):
-        st.toast("تم حفظ إعداداتك بنجاح!")
-    st.markdown('</div>', unsafe_allow_html=True)
-
+elif menu == "🌐 المسار العالمي (الترجمة)":
+    # هنا تضعين كود المترجم اللي كان يبدأ من سطر 150 تقريباً
 elif menu == "♿ سهولة الوصول":
     st.markdown('<div class="main-card">', unsafe_allow_html=True)
     st.header("♿ أدوات سهولة الوصول")
