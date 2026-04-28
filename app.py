@@ -35,8 +35,7 @@ st.markdown("""
         font-weight: bold;
     }
     h1 { color: #003366; }
-    </style>
-""", unsafe_allow_html=True)
+  """, unsafe_allow_html=True)
 
 # 3. عرض العنوان (بدون سطر الصورة اللي كان يسبب خطأ)
 st.title("منصة نقلة | NAQLA")
@@ -57,6 +56,8 @@ st.title("منصة نقلة | NAQLA")
         transform: translateY(-2px);
         box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     }
+
+    </style>
 
     /* 5. تنسيق صناديق النص (Text Area) */
     .stTextArea textarea {
