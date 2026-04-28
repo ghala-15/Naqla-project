@@ -27,23 +27,11 @@ st.markdown("""
         background-color: #003366 !important;
     }
 
+    /* 4. تنسيق الأزرار */
     .stButton>button {
         width: 100%;
         background-color: #2E7D32 !important;
         color: white !important;
-        border-radius: 12px;
-        font-weight: bold;
-    }
-    h1 { color: #003366; }
-  """, unsafe_allow_html=True)
-
-# 3. عرض العنوان (بدون سطر الصورة اللي كان يسبب خطأ)
-st.title("منصة نقلة | NAQLA")
-    /* 4. تنسيق الأزرار */
-    .stButton>button {
-        width: 100%;
-        background-color: #2E7D32; /* أخضر هادئ */
-        color: white;
         border-radius: 12px;
         border: none;
         height: 3em;
@@ -51,13 +39,12 @@ st.title("منصة نقلة | NAQLA")
         transition: 0.4s;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     }
+    
     .stButton>button:hover {
-        background-color: #1B5E20;
+        background-color: #1B5E20 !important;
         transform: translateY(-2px);
         box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
     }
-
-    </style>
 
     /* 5. تنسيق صناديق النص (Text Area) */
     .stTextArea textarea {
@@ -71,18 +58,18 @@ st.title("منصة نقلة | NAQLA")
         border-radius: 15px;
         border: none;
     }
-    </style>
-""", unsafe_allow_html=True)
-    .stApp { background-color: #f8f9fa; }
+
+    h1 { color: #003366; }
+    
     .main-card {
         background: white; padding: 25px; border-radius: 15px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px;
     }
-    .stSidebar { background-color: #ffffff !important; border-left: 1px solid #eee; }
-    h1 { color: #003366; }
     </style>
     """, unsafe_allow_html=True)
 
+# 3. عرض العنوان
+st.title("منصة نقلة | NAQLA")
 # 3. بناء القائمة الجانبية (Sidebar)
 with st.sidebar:
     logo = glob.glob("naqla_logo.*")
