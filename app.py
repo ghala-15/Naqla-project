@@ -8,32 +8,38 @@ from deep_translator import GoogleTranslator
 # 1. إعدادات الصفحة الأساسية
 st.set_page_config(page_title="منصة نقلة | NAQLA", layout="wide")
 
-# 2. تصميم الواجهة (CSS)
-st.markdown("""
-   # --- تطوير الهوية البصرية والألوان ---
+# 2. تصميم الواجهة (CSS) لتطوير الهوية البصرية
 st.markdown("""
     <style>
-    /* 1. تغيير خلفية التطبيق كاملة */
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+    
+    html, body, [class*="css"], .stMarkdown {
+        font-family: 'Cairo', sans-serif !important;
+        direction: rtl;
+        text-align: right;
+    }
+
     .stApp {
         background: linear-gradient(to bottom, #ffffff, #f0f7ff);
     }
     
-    /* 2. تنسيق الشريط الجانبي (Sidebar) */
     [data-testid="stSidebar"] {
-        background-color: #003366 !important; /* أزرق كحلي فخم */
-    }
-    [data-testid="stSidebar"] .stMarkdown, [data-testid="stSidebar"] p, [data-testid="stSidebar"] h1 {
-        color: white !important;
-    }
-    
-    /* 3. تنسيق العناوين الرئيسية */
-    h1 {
-        color: #003366;
-        font-family: 'Cairo', sans-serif;
-        font-weight: 800;
-        text-shadow: 1px 1px 2px #d1d1d1;
+        background-color: #003366 !important;
     }
 
+    .stButton>button {
+        width: 100%;
+        background-color: #2E7D32 !important;
+        color: white !important;
+        border-radius: 12px;
+        font-weight: bold;
+    }
+    h1 { color: #003366; }
+    </style>
+""", unsafe_allow_html=True)
+
+# 3. عرض العنوان (بدون سطر الصورة اللي كان يسبب خطأ)
+st.title("منصة نقلة | NAQLA")
     /* 4. تنسيق الأزرار */
     .stButton>button {
         width: 100%;
