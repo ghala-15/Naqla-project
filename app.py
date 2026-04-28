@@ -10,12 +10,62 @@ st.set_page_config(page_title="منصة نقلة | NAQLA", layout="wide")
 
 # 2. تصميم الواجهة (CSS)
 st.markdown("""
+   # --- تطوير الهوية البصرية والألوان ---
+st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
-    html, body, [class*="css"], .stMarkdown {
-        font-family: 'Cairo', sans-serif !important;
-        direction: rtl; text-align: right;
+    /* 1. تغيير خلفية التطبيق كاملة */
+    .stApp {
+        background: linear-gradient(to bottom, #ffffff, #f0f7ff);
     }
+    
+    /* 2. تنسيق الشريط الجانبي (Sidebar) */
+    [data-testid="stSidebar"] {
+        background-color: #003366 !important; /* أزرق كحلي فخم */
+    }
+    [data-testid="stSidebar"] .stMarkdown, [data-testid="stSidebar"] p, [data-testid="stSidebar"] h1 {
+        color: white !important;
+    }
+    
+    /* 3. تنسيق العناوين الرئيسية */
+    h1 {
+        color: #003366;
+        font-family: 'Cairo', sans-serif;
+        font-weight: 800;
+        text-shadow: 1px 1px 2px #d1d1d1;
+    }
+
+    /* 4. تنسيق الأزرار */
+    .stButton>button {
+        width: 100%;
+        background-color: #2E7D32; /* أخضر هادئ */
+        color: white;
+        border-radius: 12px;
+        border: none;
+        height: 3em;
+        font-weight: bold;
+        transition: 0.4s;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    .stButton>button:hover {
+        background-color: #1B5E20;
+        transform: translateY(-2px);
+        box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 5. تنسيق صناديق النص (Text Area) */
+    .stTextArea textarea {
+        border: 2px solid #e0e0e0 !important;
+        border-radius: 15px !important;
+        background-color: #ffffff !important;
+    }
+    
+    /* 6. تنسيق صناديق النجاح والتنبيه */
+    .stAlert {
+        border-radius: 15px;
+        border: none;
+    }
+    </style>
+""", unsafe_allow_html=True)
     .stApp { background-color: #f8f9fa; }
     .main-card {
         background: white; padding: 25px; border-radius: 15px;
