@@ -171,7 +171,7 @@ elif menu == "🏠 الرئيسية":
     
     st.divider()
     
-    st.subheader("👥 فريق العمل (الطلاب)")
+    st.subheader("👥 فريق العمل ")
     # توزيع الأسماء على أعمدة بشكل مرتب
     col1, col2 = st.columns(2)
     with col1:
