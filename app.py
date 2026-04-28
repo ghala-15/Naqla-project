@@ -127,23 +127,15 @@ elif menu == "🎯 نمط التركيز":
         else:
             st.warning("اكتب نص")
 
-elif menu == "🎧 المسار الصوتي":
-    st.subheader("🎧 تحويل لصوت")
+elif menu == "المسار الصوتي":
+    st.subheader("تحويل لصوت")
     audio_input = st.text_area("النص")
-  if st.button("تحويل"):
-    if audio_input:
-        tts = gTTS(text=audio_input, lang='ar')
-        fp = io.BytesIO()
-        tts.write_to_fp(fp)
-        fp.seek(0)
-        st.audio(fp)
-    else:
-        st.warning("اكتب نص")if st.button("تحويل"):
-    if audio_input:
-        tts = gTTS(text=audio_input, lang='ar')
-        fp = io.BytesIO()
-        tts.write_to_fp(fp)
-        fp.seek(0)
-        st.audio(fp)
-    else:
-        st.warning("اكتب نص")
+    if st.button("تحويل"):
+        if audio_input:
+            tts = gTTS(text=audio_input, lang='ar')
+            fp = io.BytesIO()
+            tts.write_to_fp(fp)
+            fp.seek(0)
+            st.audio(fp)
+        else:
+            st.warning("اكتب نصاً")
