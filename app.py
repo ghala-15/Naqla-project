@@ -150,17 +150,21 @@ elif menu == "🏠 الرئيسية":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الحقيقي)")
         c1, c2 = st.columns(2)
-        with c1: src_l = st.selectbox("من لغة:", ["English", "العربية"])
-        with c2: trg_l = st.selectbox("إلى لغة مبسطة:", ["العربية (مبسطة)", "English (Simple)"])
-        
+       with c1: src_l = st.selectbox("من لغة:", ["English", "العربية", "French", "German", "Indonesian", "Luganda"])
+        with c2: trg_l = st.selectbox("إلى لغة:", ["العربية", "English", "French", "German", "Indonesian", "Luganda"])
+
         text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
-        
-        if st.button("تبسيط ومعالجة ذكية ✨"):
+
+        if st.button("✨ تبسيط ومعالجة ذكية"):
             if text_in:
-                # حل مشكلة سطر 129: تعريف المتغيرات بوضوح
-                s_code = 'en' if src_l == "English" else 'ar'
-                t_code = 'ar' if "العربية" in trg_l else 'en'
-                
+                # خريطة اللغات لتحويل الاسم إلى كود
+                lang_map = {
+                    "English": "en", "العربية": "ar", 
+                    "French": "fr", "German": "de", 
+                    "Indonesian": "id", "Luganda": "lg"
+                }
+                s_code = lang_map.get(src_l, "en")
+                t_code = lang_map.get(trg_l, "ar")
                 translated = GoogleTranslator(source=s_code, target=t_code).translate(text_in)
                 simple_text = translated.replace("Cloud Computing", "التخزين السحابي (مساحة أونلاين)")
                 
