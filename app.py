@@ -246,7 +246,7 @@ elif menu == "🏠 الرئيسية":
     elif pathway == "👁️ النمط البصري":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.header("👁️ النمط البصري (مساعد لغة الإشارة)")
-        sign_map = {"جامعة": "uni.gif", "شكراً": "thanks.gif", "سعيد": "happy.gif"}
+        sign_map = {"جامعة": "uni.gif", "شكراً": "thanks.gif"}
         selected_word = st.selectbox("اختر المصطلح:", list(sign_map.keys()))
         
         if st.button("عرض الإشارة 🎥"):
