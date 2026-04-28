@@ -227,8 +227,7 @@ elif menu == "🏠 الرئيسية":
         
         if st.button("عرض الإشارة 🎥"):
             target_gif = sign_map[selected_word]
-            if os.path.
-            exists(target_gif):
+            if os.path.exists(target_gif):
                 st.image(target_gif, caption=f"إشارة: {selected_word}")
             else:
                 st.error("ملف الإشارة غير موجود في المجلد.")
