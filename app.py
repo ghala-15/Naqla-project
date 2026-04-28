@@ -150,7 +150,7 @@ elif menu == "🏠 الرئيسية":
         st.markdown('<div class="main-card">', unsafe_allow_html=True)
         st.subheader("🌐 المسار العالمي (الترجمة والتبسيط الحقيقي)")
         c1, c2 = st.columns(2)
-       with c1: src_l = st.selectbox("من لغة:", ["English", "العربية", "French", "German", "Indonesian", "Luganda"])
+        with c1: src_l = st.selectbox("من لغة:", ["English", "العربية", "French", "German", "Indonesian", "Luganda"])
         with c2: trg_l = st.selectbox("إلى لغة:", ["العربية", "English", "French", "German", "Indonesian", "Luganda"])
 
         text_in = st.text_area("أدخل النص الأكاديمي المراد معالجته:", height=100)
