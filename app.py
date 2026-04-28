@@ -23,8 +23,22 @@ st.markdown("""
         background: linear-gradient(to bottom, #ffffff, #f0f7ff);
     }
     
+   /* تنسيق الشريط الجانبي - تكبير الخط وتوضيحه */
     [data-testid="stSidebar"] {
         background-color: #003366 !important;
+    }
+    
+    /* هذا الجزء هو المسؤول عن حجم ووضوح الخط في القائمة */
+    [data-testid="stSidebar"] .stRadio label p, [data-testid="stSidebar"] .stMarkdown p {
+        color: white !important;
+        font-size: 1.2rem !important; /* تكبير الخط */
+        font-weight: bold !important;  /* جعل الخط عريض */
+        text-align: right !important;
+    }
+
+    /* تكبير حجم الأيقونات والدوائر الخاصة بالاختيار */
+    [data-testid="stSidebar"] .stRadio div[role="radiogroup"] {
+        gap: 15px; /* زيادة المسافة بين الخيارات لراحة العين */
     }
 
     /* 4. تنسيق الأزرار */
