@@ -83,7 +83,17 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # 3. عرض العنوان
-st.title("منصة نقلة | NAQLA")
+# 3. الهيدر الجديد (شعار الجامعة + العنوان) في أعلى الصفحة
+col_logo, col_title = st.columns([1, 4])
+
+with col_logo:
+    # سيحاول البرنامج العثور على أي ملف يبدأ بـ naqla_logo أو kku_logo
+    logo_files = glob.glob("kku_logo.*") + glob.glob("naqla_logo.*")
+    if logo_files:
+        st.image(logo_files[0], width=100)
+
+with col_title:
+    st.title("منصة نقلة | NAQLA")
 # --- لوحة الإحصائيات (Dashboard) ---
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 col_stat1, col_stat2, col_stat3 = st.columns(3)
@@ -112,17 +122,7 @@ with st.sidebar:
     else:
         pathway = None
 
-# 4. الهيدر (العنوان وشعار الجامعة)
-col_h1, col_h2 = st.columns([3, 1])
-with col_h1:
-    st.title("منصة نـقـلـة | NAQLA")
-    if pathway: 
-        st.subheader(f"المسار الحالي: {pathway}")
-with col_h2:
-    if os.path.exists("kku_logo.jpg"): 
-        st.image("kku_logo.jpg", width=120)
 
-st.divider()
 
 # --- منطق الصفحات ---
 
