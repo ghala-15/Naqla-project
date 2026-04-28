@@ -134,7 +134,7 @@ if menu == "⚙️ الإعدادات":
         st.subheader("👤 بيانات الحساب")
         st.text_input("الاسم الكامل:", value="غلا")
         st.text_input("البريد الجامعي:", value="ghala@kku.edu.sa")
-        with col_acc2:
+    with col_acc2:
         st.subheader("🛠️ تفضيلات النظام")
         st.selectbox("لغة الواجهة:", ["العربية", "English"])
         st.toggle("تفعيل الإشعارات الذكية", value=True)
